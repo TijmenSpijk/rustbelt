@@ -8,7 +8,7 @@ use clap::Command as ClapCommand;
 use windows::{core::*, Win32::System::Variant::VARIANT};
 
 use crate::{
-    commands::base::{registry::CommandRegistration, Command, CommandDTO, CommandData, CommandResult::{self, Simple}},
+    commands::base::{registry::CommandRegistration, Command, CommandDTO, CommandData, CommandResult::{self, Simple, Group}},
     runtime::Runtime,
     utils::registry::{get_string_value, get_sub_key_names, open_sub_key, RegistryHive},
 };
@@ -87,6 +87,8 @@ impl Command for LocalGPOCommand {
             return temp;
         })
         .collect();
+
+        //TODO: User GPO and Group output
 
         Ok(Simple(CommandDTO {
             source: "GPO".to_string(),
